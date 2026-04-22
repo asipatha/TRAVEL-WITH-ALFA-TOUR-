@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRAVEL WITH ALFA TOUR</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & ROOT ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --orange:#FF6B1A;--orange-d:#E05500;--orange-g:rgba(255,107,26,0.25);
+  --lime:#C8E63C;--lime-d:#a5c020;--lime-g:rgba(200,230,60,0.25);
+  --cyan:#00E5CC;--cyan-d:#00c4ae;--cyan-g:rgba(0,229,204,0.25);
+  --d1:#111318;--d2:#161920;--d3:#0c0e14;--d4:#080a10;
+  --tw:#ffffff;--tm:#b0b8c8;--td:#505870;
+  --cb:rgba(255,255,255,0.04);--cbr:rgba(255,255,255,0.08);
+  --fd:'Bebas Neue',sans-serif;--fh:'Rajdhani',sans-serif;--fb:'Exo 2',sans-serif;
+  --tr:0.3s cubic-bezier(0.4,0,0.2,1);
+}
+body{font-family:var(--fb);background:var(--d1);color:var(--tw);overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}
+.container{max-width:1200px;margin:0 auto;padding:0 2rem}
+
+/* ===== PAGE SYSTEM ===== */
+.page{display:none;min-height:100vh;padding-top:70px}
+.page.active{display:block}
+
+/* ===== NAVBAR ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.9rem 2.5rem;
+  background:rgba(8,10,16,0.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  transition:var(--tr);
+}
+nav.scrolled{padding:0.6rem 2.5rem;background:rgba(8,10,16,0.99)}
+.logo{display:flex;align-items:center;gap:0.5rem;font-family:var(--fd);font-size:1.3rem;letter-spacing:2px;cursor:pointer}
+.logo-acc{color:var(--orange)}
+.nav-links{display:flex;list-style:none;gap:2rem}
+.nav-links a{
+  font-family:var(--fh);font-size:0.82rem;font-weight:700;letter-spacing:2px;
+  color:var(--tm);transition:var(--tr);position:relative;padding-bottom:4px;cursor:pointer
+}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--orange);transition:var(--tr)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a.active{color:var(--orange)}
+.nav-soc{display:flex;gap:1rem}
+.nav-soc a{font-family:var(--fh);font-size:0.72rem;font-weight:700;letter-spacing:1px;color:var(--td);transition:var(--tr)}
+.nav-soc a:hover{color:var(--tw)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:10}
+.burger span{display:block;width:24px;height:2px;background:var(--tw);transition:var(--tr)}
+
+/* ===== BUTTONS ===== */
+.btn{display:inline-block;padding:0.85rem 2rem;font-family:var(--fh);font-size:0.88rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:var(--tr);clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%)}
+.btn-o{background:var(--orange);color:#fff}
+.btn-o:hover{background:var(--orange-d);transform:translateY(-2px);box-shadow:0 10px 30px var(--orange-g)}
+.btn-g{background:transparent;color:var(--tw);border:1px solid rgba(255,255,255,0.4)}
+.btn-g:hover{border-color:var(--tw);background:rgba(255,255,255,0.08)}
+.btn-l{background:var(--lime);color:#111;border-radius:3px;clip-path:none}
+.btn-l:hover{background:var(--lime-d);transform:translateY(-2px);box-shadow:0 8px 24px var(--lime-g)}
+.btn-c{background:var(--cyan);color:#111;border-radius:3px;clip-path:none}
+.btn-c:hover{background:var(--cyan-d);transform:translateY(-2px)}
+.btn-sm{padding:0.45rem 1.1rem;font-size:0.75rem;letter-spacing:1px;clip-path:none;border-radius:2px}
+
+/* ===== SECTION WRAPPERS ===== */
+.s-dark{background:var(--d2);padding:5.5rem 0}
+.s-darker{background:var(--d3);padding:5.5rem 0}
+.s-black{background:var(--d4);padding:5.5rem 0}
+.s-header{text-align:center;margin-bottom:3.5rem}
+.s-tag{display:inline-block;font-family:var(--fh);font-size:0.72rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--orange);padding:0.25rem 0.9rem;border:1px solid var(--orange-g);background:rgba(255,107,26,0.07);margin-bottom:0.7rem}
+.s-title{font-family:var(--fd);font-size:clamp(1.9rem,4vw,3rem);letter-spacing:3px;line-height:1.05}
+.s-title .acc-o{color:var(--orange)}
+.s-title .acc-l{color:var(--lime)}
+.s-title .acc-c{color:var(--cyan)}
+.s-title2{font-family:var(--fh);font-size:clamp(1.4rem,3vw,2rem);font-weight:700;letter-spacing:1px;color:var(--tw)}
+.s-title3{font-family:var(--fd);font-size:clamp(1.8rem,4vw,3rem);letter-spacing:4px;color:var(--tw)}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes heroZoom{from{transform:scale(1.04)}to{transform:scale(1.12)}}
+@keyframes floatUp{0%{transform:translateY(100vh);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-120px);opacity:0}}
+@keyframes scrollPulse{0%,100%{opacity:0.3}50%{opacity:1}}
+.anim1{animation:fadeInUp 0.7s ease 0.2s both}
+.anim2{animation:fadeInUp 0.7s ease 0.4s both}
+.anim3{animation:fadeInUp 0.7s ease 0.6s both}
+.anim4{animation:fadeInUp 0.7s ease 0.8s both}
+.anim5{animation:fadeIn 0.7s ease 1s both}
+
+/* ============================================================
+   PAGE 1 — HOME (Orange theme, Image 1 style)
+   ============================================================ */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600') center/cover no-repeat;animation:heroZoom 20s ease-in-out infinite alternate}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(8,10,16,0.88) 0%,rgba(8,10,16,0.45) 55%,rgba(8,10,16,0.72) 100%)}
+.particles{position:absolute;inset:0;pointer-events:none}
+.particle{position:absolute;width:2px;height:2px;background:rgba(255,107,26,0.7);border-radius:50%;animation:floatUp linear infinite}
+.hero-content{position:relative;z-index:2;padding:9rem 2.5rem 3rem;max-width:680px}
+.hero-tag{display:inline-block;font-family:var(--fh);font-size:0.75rem;font-weight:700;letter-spacing:5px;color:var(--orange);text-transform:uppercase;margin-bottom:0.8rem}
+.hero-title{font-family:var(--fd);font-size:clamp(3.5rem,8vw,7rem);letter-spacing:4px;line-height:0.93;color:var(--tw);margin-bottom:1.3rem}
+.hero-title span{color:var(--orange)}
+.hero-sub{font-size:0.95rem;color:var(--tm);line-height:1.75;max-width:480px;margin-bottom:2.2rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-stats{position:relative;z-index:2;display:flex;align-items:center;gap:2.5rem;padding:1.8rem 2.5rem;background:rgba(0,0,0,0.55);backdrop-filter:blur(12px);border-top:1px solid rgba(255,107,26,0.2)}
+.stat-n{display:block;font-family:var(--fd);font-size:2rem;letter-spacing:2px;color:var(--orange)}
+.stat-l{display:block;font-size:0.72rem;letter-spacing:2px;color:var(--td);text-transform:uppercase;margin-top:-2px}
+.stat-div{width:1px;height:48px;background:rgba(255,255,255,0.12)}
+.scroll-ind{position:absolute;bottom:2rem;right:2.5rem;z-index:2;display:flex;flex-direction:column;align-items:center;gap:0.5rem}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,transparent,var(--orange));animation:scrollPulse 2s ease-in-out infinite}
+.scroll-ind span{font-family:var(--fh);font-size:0.6rem;letter-spacing:3px;color:var(--td);writing-mode:vertical-rl;text-transform:uppercase}
+
+/* Features */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.4rem}
+.feat-card{background:var(--cb);border:1px solid var(--cbr);padding:1.8rem;transition:var(--tr);position:relative;overflow:hidden}
+.feat-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--orange);transition:var(--tr)}
+.feat-card:hover::before{height:100%}
+.feat-card:hover{background:rgba(255,107,26,0.06);border-color:rgba(255,107,26,0.28);transform:translateY(-5px)}
+.feat-icon{font-size:2.2rem;margin-bottom:0.9rem;display:block}
+.feat-card h3{font-family:var(--fh);font-size:1rem;font-weight:700;letter-spacing:1px;color:var(--tw);margin-bottom:0.6rem}
+.feat-card p{font-size:0.85rem;color:var(--td);line-height:1.6}
+
+/* Home Tours Grid */
+.h-tours{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.4rem}
+.h-tour{background:var(--cb);border:1px solid var(--cbr);overflow:hidden;transition:var(--tr);cursor:pointer}
+.h-tour:hover{transform:translateY(-8px);border-color:rgba(255,107,26,0.38)}
+.h-tour-img{height:190px;background-size:cover!important;background-position:center!important;transition:transform 0.4s ease}
+.h-tour:hover .h-tour-img{transform:scale(1.06)}
+.h-tour-body{padding:1.3rem}
+.badge-o{display:inline-block;background:var(--orange);color:#fff;font-family:var(--fh);font-size:0.62rem;font-weight:700;letter-spacing:2px;padding:0.18rem 0.65rem;margin-bottom:0.6rem}
+.h-tour-body h3{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--tw);margin-bottom:0.3rem}
+.h-tour-body p{font-size:0.82rem;color:var(--td);margin-bottom:0.8rem}
+.tour-link{font-family:var(--fh);font-size:0.78rem;font-weight:700;letter-spacing:2px;color:var(--orange);transition:var(--tr)}
+.tour-link:hover{letter-spacing:3px}
+
+/* About Preview */
+.ab-flex{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.ab-imgs{position:relative;height:420px}
+.ab-img1{position:absolute;top:0;left:0;width:80%;height:78%;background-size:cover!important;background-position:center!important;border:3px solid var(--orange)}
+.ab-img2{position:absolute;bottom:0;right:0;width:50%;height:48%;background-size:cover!important;background-position:center!important;border:4px solid var(--d2);box-shadow:0 0 0 5px var(--d3)}
+.ab-text p{font-size:0.88rem;color:var(--tm);line-height:1.8;margin-bottom:1.1rem}
+.ab-text .btn{margin-top:0.8rem}
+
+/* Testimonials */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.testi{background:var(--cb);border:1px solid var(--cbr);padding:1.8rem;transition:var(--tr)}
+.testi.featured{border-color:rgba(255,107,26,0.4);background:rgba(255,107,26,0.05);transform:translateY(-10px)}
+.stars{color:var(--orange);font-size:0.85rem;letter-spacing:2px;margin-bottom:0.9rem}
+.testi p{font-size:0.86rem;color:var(--tm);font-style:italic;line-height:1.7;margin-bottom:1.3rem}
+.t-author{display:flex;align-items:center;gap:0.9rem}
+.t-av{width:42px;height:42px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:700;font-size:0.85rem;border-radius:50%;flex-shrink:0}
+.t-author strong{font-family:var(--fh);font-size:0.88rem;font-weight:700;display:block}
+.t-author small{font-size:0.73rem;color:var(--td)}
+
+/* CTA */
+.cta-sec{position:relative;padding:7rem 2rem;text-align:center;background:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600') center/cover no-repeat}
+.cta-ov{position:absolute;inset:0;background:rgba(8,10,16,0.84)}
+.cta-body{position:relative;z-index:1}
+.cta-body h2{font-family:var(--fd);font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:4px;line-height:1.1;margin-bottom:0.9rem}
+.cta-body p{font-size:0.95rem;color:var(--tm);margin-bottom:2.2rem}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* ============================================================
+   PAGE 2 — TOURS (Lime/Green theme, Image 2 style)
+   ============================================================ */
+.t-hero{position:relative;min-height:82vh;display:flex;flex-direction:column;overflow:hidden}
+.t-hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600') center/cover no-repeat;animation:heroZoom 20s ease-in-out infinite alternate}
+.t-hero-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,10,16,0.38) 0%,rgba(8,10,16,0.88) 100%)}
+.t-slides{position:absolute;left:2.5rem;top:50%;transform:translateY(-50%);z-index:3;display:flex;flex-direction:column;gap:1rem}
+.t-slides span{font-family:var(--fh);font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.3);letter-spacing:2px;cursor:pointer;transition:var(--tr)}
+.t-slides span.on{color:var(--lime)}
+.t-hero-cnt{position:relative;z-index:2;padding:7.5rem 2.5rem 2rem 5rem}
+.t-big{font-family:var(--fd);font-size:clamp(5rem,14vw,11rem);letter-spacing:8px;color:var(--tw);line-height:0.9}
+.t-sub{font-family:var(--fh);font-size:0.95rem;letter-spacing:2px;color:var(--tm);margin-top:0.8rem}
+.t-tags{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(0,0,0,0.72);backdrop-filter:blur(12px);border-top:1px solid rgba(200,230,60,0.18)}
+.t-tag-item{display:flex;align-items:flex-start;gap:0.7rem;padding:1.4rem 1.3rem;border-right:1px solid rgba(255,255,255,0.07);font-size:0.78rem;color:var(--tm)}
+.t-tag-item:last-child{border-right:none}
+.t-tag-icon{font-size:0.95rem;flex-shrink:0;margin-top:2px}
+
+/* Wonders */
+.wond-hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2.8rem}
+.wond-next{width:42px;height:42px;background:var(--lime);color:#111;border:none;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;transition:var(--tr)}
+.wond-next:hover{background:var(--lime-d);transform:scale(1.1)}
+.wond-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.wond{position:relative;overflow:hidden;cursor:pointer}
+.wond-img{height:210px;background-size:cover!important;background-position:center!important;transition:transform 0.4s ease}
+.wond:hover .wond-img{transform:scale(1.08)}
+.wond-lbl{display:flex;gap:0.7rem;align-items:flex-start;padding:0.9rem 0.4rem}
+.wond-lbl strong{display:block;font-family:var(--fh);font-size:0.88rem;font-weight:700;color:var(--lime);margin-bottom:0.25rem}
+.wond-lbl small{font-size:0.73rem;color:var(--td);line-height:1.4}
+
+/* Reasons */
+.reas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;margin-top:2.5rem}
+.reas{text-align:center;padding:2.2rem 1.4rem;background:var(--cb);border:1px solid var(--cbr);transition:var(--tr);position:relative}
+.reas::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--lime);transition:var(--tr)}
+.reas:hover::after,.reas.on::after{width:60%}
+.reas-ico{font-size:2rem;width:65px;height:65px;background:rgba(200,230,60,0.1);border:1px solid rgba(200,230,60,0.2);border-radius:50%;margin:0 auto 1.1rem;display:flex;align-items:center;justify-content:center}
+.reas h3{font-family:var(--fh);font-size:0.95rem;font-weight:700;color:var(--tw);margin-bottom:0.6rem}
+.reas.on h3{color:var(--lime)}
+.reas p{font-size:0.83rem;color:var(--td)}
+
+/* Vacation */
+.vac-flex{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.vac-imgs{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:190px 190px;gap:0.7rem}
+.vi1{grid-column:1;grid-row:1;background-size:cover!important;background-position:center!important}
+.vi2{grid-column:2;grid-row:1/3;background-size:cover!important;background-position:center!important}
+.vi3{grid-column:1;grid-row:2;background-size:cover!important;background-position:center!important}
+.vac-txt h2{margin-bottom:1.3rem}
+.vac-txt p{font-size:0.87rem;color:var(--tm);line-height:1.8;margin-bottom:1.8rem}
+
+/* All tours */
+.tf{display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.8rem}
+.tf-btn{padding:0.45rem 1.1rem;background:transparent;color:var(--td);font-family:var(--fh);font-size:0.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--cbr);cursor:pointer;transition:var(--tr);border-radius:3px}
+.tf-btn:hover,.tf-btn.on{background:var(--lime);color:#111;border-color:var(--lime)}
+.at-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1.8rem}
+.at{background:var(--cb);border:1px solid var(--cbr);overflow:hidden;transition:var(--tr)}
+.at.hide{display:none}
+.at:hover{transform:translateY(-6px);border-color:rgba(200,230,60,0.28)}
+.at-img{height:210px;background-size:cover!important;background-position:center!important;transition:transform 0.4s ease}
+.at:hover .at-img{transform:scale(1.05)}
+.at-body{padding:1.4rem}
+.badge-l{display:inline-block;background:var(--lime);color:#111;font-family:var(--fh);font-size:0.62rem;font-weight:700;letter-spacing:2px;padding:0.18rem 0.65rem;margin-bottom:0.6rem}
+.at-body h3{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--tw);margin-bottom:0.5rem}
+.at-body p{font-size:0.83rem;color:var(--td);margin-bottom:0.9rem;line-height:1.6}
+.at-meta{display:flex;gap:1rem;margin-bottom:1.1rem;font-size:0.78rem;color:var(--td);font-family:var(--fh);font-weight:600}
+.at-price{color:var(--lime);font-weight:700;margin-left:auto}
+
+/* ============================================================
+   PAGE 3 — DESTINATION (Cyan theme, Image 3 style)
+   ============================================================ */
+.d-hero{position:relative;min-height:88vh;display:flex;flex-direction:column;overflow:hidden}
+.d-hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=1600') center/cover no-repeat}
+.d-hero-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,12,0.45) 0%,rgba(5,7,12,0.88) 80%,rgba(5,7,12,1) 100%)}
+.d-nums{position:absolute;right:2.5rem;top:50%;transform:translateY(-50%);z-index:3;display:flex;flex-direction:column;gap:1rem}
+.d-nums span{font-family:var(--fh);font-size:0.88rem;font-weight:700;color:rgba(255,255,255,0.28);cursor:pointer;transition:var(--tr)}
+.d-nums span.on{color:var(--tw);border-right:2px solid var(--cyan);padding-right:0.7rem}
+.d-hero-cnt{position:relative;z-index:2;padding:11rem 2.5rem 2.5rem;max-width:680px}
+.d-big{font-family:var(--fd);font-size:clamp(4rem,10vw,8rem);letter-spacing:6px;color:var(--cyan);line-height:0.92;text-shadow:0 0 60px rgba(0,229,204,0.18)}
+.d-hero-cnt p{font-size:0.88rem;color:var(--tm);line-height:1.8;margin-top:1.3rem}
+.d-routes{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);background:rgba(0,0,0,0.82);backdrop-filter:blur(12px);border-top:1px solid rgba(0,229,204,0.18);margin-top:auto}
+.d-route{display:flex;gap:0.9rem;align-items:flex-start;padding:1.7rem 1.8rem;border-right:1px solid rgba(255,255,255,0.07)}
+.d-route:last-child{border-right:none}
+.d-route-ico{font-size:1.4rem;flex-shrink:0;margin-top:2px}
+.d-route strong{display:block;font-family:var(--fh);font-size:0.88rem;font-weight:700;color:var(--tw);margin-bottom:0.4rem}
+.d-route small{display:block;font-size:0.73rem;color:var(--td);line-height:1.5;margin-bottom:0.7rem}
+.more-d{font-family:var(--fh);font-size:0.73rem;font-weight:700;letter-spacing:2px;color:var(--cyan);transition:var(--tr)}
+.more-d:hover{letter-spacing:3px}
+
+/* Popular Destinations */
+.pd-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:2.8rem}
+.pd-hd p{font-size:0.83rem;color:var(--td)}
+.pd-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:240px 240px;gap:0.8rem}
+.pd{position:relative;overflow:hidden;cursor:pointer}
+.pd.tall{grid-row:span 2}
+.pd.wide{grid-column:span 2}
+.pd-img{position:absolute;inset:0;background-size:cover!important;background-position:center!important;transition:transform 0.5s ease}
+.pd:hover .pd-img{transform:scale(1.08)}
+.pd-ov{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,0.85) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.3rem}
+.pd-tag{display:inline-block;background:var(--cyan);color:#111;font-family:var(--fh);font-size:0.6rem;font-weight:700;letter-spacing:2px;padding:0.18rem 0.65rem;margin-bottom:0.4rem;width:fit-content}
+.pd-ov h3{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--tw);margin-bottom:0.2rem}
+.pd-ov p{font-size:0.78rem;color:var(--tm)}
+
+/* Discover */
+.disc-sec{position:relative;padding:7rem 0;overflow:hidden}
+.disc-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600') center/cover no-repeat}
+.disc-sec::before{content:'';position:absolute;inset:0;background:rgba(5,7,12,0.86);z-index:1}
+.disc-cnt{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:center}
+.disc-txt h2{font-family:var(--fd);font-size:clamp(3rem,6vw,5rem);letter-spacing:4px;color:var(--cyan);line-height:0.92;margin-bottom:2.2rem}
+.watch-v{display:flex;align-items:center;gap:1rem;margin-bottom:2.2rem;cursor:pointer;width:fit-content}
+.play-c{width:52px;height:52px;border-radius:50%;border:2px solid var(--tw);display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:var(--tr);flex-shrink:0}
+.watch-v:hover .play-c{background:var(--cyan);border-color:var(--cyan);color:#111}
+.watch-v span{font-family:var(--fh);font-size:0.83rem;font-weight:700;letter-spacing:3px;color:var(--tw)}
+.disc-q{border-left:3px solid var(--cyan);padding-left:1.4rem;font-style:italic;color:var(--tm);font-size:0.88rem;line-height:1.8}
+.disc-q cite{display:block;margin-top:0.7rem;font-size:0.78rem;color:var(--td);font-style:normal}
+.disc-vids{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,115px);gap:0.5rem}
+.vt{position:relative;overflow:hidden;cursor:pointer;background-size:cover!important;background-position:center!important}
+.vt:first-child{grid-column:span 2}
+.play-btn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.38);font-size:1.1rem;color:#fff;opacity:0;transition:var(--tr)}
+.vt:hover .play-btn{opacity:1;background:rgba(0,229,204,0.25)}
+
+/* Dest cards */
+.cont-tabs{display:flex;gap:0.5rem;justify-content:center;margin-bottom:2.8rem;flex-wrap:wrap}
+.ct{padding:0.45rem 1.3rem;background:transparent;color:var(--td);font-family:var(--fh);font-size:0.78rem;font-weight:700;letter-spacing:2px;border:1px solid var(--cbr);cursor:pointer;transition:var(--tr)}
+.ct:hover,.ct.on{background:var(--cyan);color:#111;border-color:var(--cyan)}
+.dc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.4rem}
+.dc{background:var(--cb);border:1px solid var(--cbr);overflow:hidden;transition:var(--tr)}
+.dc:hover{transform:translateY(-6px);border-color:rgba(0,229,204,0.28)}
+.dc-img{height:175px;background-size:cover!important;background-position:center!important;transition:transform 0.4s ease}
+.dc:hover .dc-img{transform:scale(1.05)}
+.dc-body{padding:1.3rem}
+.dc-country{font-family:var(--fh);font-size:0.72rem;font-weight:700;letter-spacing:2px;color:var(--cyan);display:block;margin-bottom:0.4rem}
+.dc-body h3{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--tw);margin-bottom:0.4rem}
+.dc-body p{font-size:0.82rem;color:var(--td);margin-bottom:1rem;line-height:1.6}
+.dc-foot{display:flex;align-items:center;justify-content:space-between}
+.dc-foot span{font-family:var(--fh);font-size:0.88rem;font-weight:700;color:var(--cyan)}
+.dc-btn{display:inline-block;padding:0.38rem 0.9rem;background:var(--cyan);color:#111;font-family:var(--fh);font-size:0.73rem;font-weight:700;letter-spacing:2px;transition:var(--tr);cursor:pointer}
+.dc-btn:hover{background:var(--cyan-d)}
+
+/* ============================================================
+   PAGE 4 — GALLERY
+   ============================================================ */
+.gal-filters{display:flex;gap:0.7rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.8rem}
+.gf{padding:0.45rem 1.3rem;background:transparent;color:var(--td);font-family:var(--fh);font-size:0.78rem;font-weight:700;letter-spacing:2px;border:1px solid var(--cbr);cursor:pointer;transition:var(--tr);text-transform:uppercase}
+.gf:hover,.gf.on{background:var(--lime);color:#111;border-color:var(--lime)}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:195px;gap:0.7rem}
+.gi{position:relative;overflow:hidden;cursor:pointer;border:1px solid var(--cbr);transition:border-color var(--tr)}
+.gi.tall{grid-row:span 2}
+.gi.wide{grid-column:span 2}
+.gi.hide{display:none}
+.gi-img{position:absolute;inset:0;background-size:cover!important;background-position:center!important;transition:transform 0.5s ease}
+.gi:hover .gi-img{transform:scale(1.1)}
+.gi:hover{border-color:rgba(200,230,60,0.4)}
+.gi-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.88));padding:1.3rem 0.9rem 0.7rem;font-family:var(--fh);font-size:0.82rem;font-weight:700;color:var(--tw);transform:translateY(100%);transition:var(--tr)}
+.gi:hover .gi-cap{transform:translateY(0)}
+.gi-zoom{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(200,230,60,0.08);opacity:0;transition:var(--tr);font-size:1.4rem;z-index:1}
+.gi:hover .gi-zoom{opacity:1}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s ease}
+.lb.on{opacity:1;pointer-events:all}
+.lb-img{width:90vw;height:80vh;background-size:contain!important;background-position:center!important;background-repeat:no-repeat!important}
+.lb-cap{position:absolute;bottom:2.5rem;font-family:var(--fh);font-size:1rem;letter-spacing:2px;color:var(--tw)}
+.lb-x{position:absolute;top:1.8rem;right:1.8rem;background:none;border:1px solid rgba(255,255,255,0.28);color:#fff;font-size:1.1rem;width:42px;height:42px;cursor:pointer;transition:var(--tr)}
+.lb-x:hover{background:var(--lime);border-color:var(--lime);color:#111}
+
+/* ============================================================
+   PAGE 5 — CONTACT
+   ============================================================ */
+.con-flex{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;margin-bottom:4rem}
+.con-info h2{margin-bottom:1rem}
+.con-info>p{font-size:0.88rem;color:var(--tm);line-height:1.8;margin-bottom:2.2rem}
+.con-details{display:flex;flex-direction:column;gap:1.4rem;margin-bottom:2.2rem}
+.ci{display:flex;gap:1.1rem;align-items:flex-start}
+.ci-ico{font-size:1.2rem;width:42px;height:42px;background:rgba(255,107,26,0.1);border:1px solid rgba(255,107,26,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ci strong{display:block;font-family:var(--fh);font-size:0.83rem;font-weight:700;color:var(--tw);margin-bottom:0.25rem}
+.ci p{font-size:0.82rem;color:var(--td);line-height:1.5}
+.con-social h4{font-family:var(--fh);font-size:0.78rem;font-weight:700;letter-spacing:3px;color:var(--tm);margin-bottom:0.9rem;text-transform:uppercase}
+.soc-links{display:flex;gap:0.6rem;flex-wrap:wrap}
+.sl{font-family:var(--fh);font-size:0.73rem;font-weight:700;letter-spacing:1px;color:var(--td);padding:0.38rem 0.75rem;border:1px solid var(--cbr);transition:var(--tr)}
+.sl:hover{color:var(--orange);border-color:var(--orange)}
+
+/* Form */
+.form-wrap{background:var(--cb);border:1px solid var(--cbr);padding:2.3rem}
+.form-wrap h3{font-family:var(--fh);font-size:1.2rem;font-weight:700;letter-spacing:2px;color:var(--tw);margin-bottom:1.8rem;padding-bottom:0.9rem;border-bottom:1px solid var(--cbr)}
+.success-msg{display:none;align-items:center;gap:1rem;background:rgba(255,107,26,0.09);border:1px solid rgba(255,107,26,0.28);padding:1.3rem;margin-bottom:1.3rem}
+.success-msg.show{display:flex}
+.success-msg span{font-size:1.8rem}
+.success-msg p{font-size:0.87rem;color:var(--tm);line-height:1.6}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg{margin-bottom:1.1rem}
+.fg label{display:block;font-family:var(--fh);font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--td);margin-bottom:0.45rem}
+.fg input,.fg select,.fg textarea{width:100%;padding:0.8rem 0.95rem;background:rgba(255,255,255,0.04);border:1px solid var(--cbr);color:var(--tw);font-family:var(--fb);font-size:0.87rem;outline:none;transition:var(--tr);-webkit-appearance:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--orange);background:rgba(255,107,26,0.04)}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--td)}
+.fg select option{background:var(--d2);color:var(--tw)}
+.fg textarea{resize:vertical}
+.btn-sub{width:100%;padding:1rem;background:var(--orange);color:#fff;font-family:var(--fh);font-size:0.95rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;transition:var(--tr);clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%)}
+.btn-sub:hover{background:var(--orange-d);box-shadow:0 10px 40px var(--orange-g)}
+
+/* Map */
+.map-box{background:var(--cb);border:1px solid var(--cbr);height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;margin-top:1.5rem}
+.map-box .pin{font-size:2.8rem;margin-bottom:0.9rem}
+.map-box p{color:var(--tm);font-size:0.88rem;margin-bottom:1rem}
+
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3.5rem}
+.faq{background:var(--cb);border:1px solid var(--cbr);padding:1.4rem;cursor:pointer;transition:var(--tr)}
+.faq:hover{border-color:rgba(255,107,26,0.28)}
+.faq.on{border-color:rgba(255,107,26,0.4);background:rgba(255,107,26,0.05)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;font-family:var(--fh);font-size:0.92rem;font-weight:700;color:var(--tw)}
+.faq-arr{font-size:1.2rem;color:var(--orange);transition:var(--tr);flex-shrink:0;margin-left:0.8rem}
+.faq.on .faq-arr{transform:rotate(45deg)}
+.faq-a{font-size:0.83rem;color:var(--td);line-height:1.7;max-height:0;overflow:hidden;transition:max-height 0.3s ease,margin-top 0.3s ease}
+.faq.on .faq-a{max-height:200px;margin-top:0.9rem}
+
+/* ============================================================
+   PAGE 6 — ABOUT
+   ============================================================ */
+.st-flex{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.st-txt p{font-size:0.87rem;color:var(--tm);line-height:1.8;margin-bottom:1.1rem}
+.st-vals{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:1.8rem}
+.sv{display:flex;align-items:center;gap:0.5rem;font-family:var(--fh);font-size:0.78rem;font-weight:700;letter-spacing:1px;color:var(--tm);border:1px solid var(--cbr);padding:0.38rem 0.75rem}
+.st-imgs{position:relative;height:480px}
+.si1{position:absolute;top:0;right:0;width:76%;height:74%;background-size:cover!important;background-position:center!important}
+.si2{position:absolute;bottom:0;left:0;width:52%;height:50%;background-size:cover!important;background-position:center!important;border:4px solid var(--d2);box-shadow:0 0 0 4px var(--d3)}
+.si-stat{position:absolute;bottom:3.5rem;right:0;background:var(--cyan);color:#111;padding:1.3rem 1.8rem;text-align:center}
+.si-n{font-family:var(--fd);font-size:3.2rem;letter-spacing:2px;line-height:1}
+.si-l{font-family:var(--fh);font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-top:0.25rem}
+
+/* Stats strip */
+.stats-strip{background:var(--orange);padding:2.8rem 0}
+.stats-row{display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:2rem}
+.sb{text-align:center}
+.sb-n{font-family:var(--fd);font-size:2.7rem;letter-spacing:2px;color:#fff;line-height:1}
+.sb-l{font-family:var(--fh);font-size:0.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:0.25rem}
+
+/* Mission */
+.miss-flex{display:grid;grid-template-columns:1.2fr 1fr;gap:2.8rem;align-items:center}
+.miss-img{height:380px;background-size:cover!important;background-position:center!important;border:3px solid var(--cyan)}
+.miss-cards{display:flex;flex-direction:column;gap:1.4rem}
+.mc{background:var(--cb);border:1px solid var(--cbr);padding:1.4rem;border-left:3px solid var(--cyan)}
+.mc h3{font-family:var(--fh);font-size:0.95rem;font-weight:700;color:var(--tw);margin-bottom:0.6rem}
+.mc p{font-size:0.82rem;color:var(--td);line-height:1.6}
+
+/* Team */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+.tm{background:var(--cb);border:1px solid var(--cbr);overflow:hidden;transition:var(--tr)}
+.tm:hover{transform:translateY(-8px);border-color:rgba(0,229,204,0.28)}
+.tm-img{height:195px;background-size:cover!important;background-position:center!important;transition:transform 0.4s ease}
+.tm:hover .tm-img{transform:scale(1.05)}
+.tm-body{padding:1.1rem}
+.tm-body h3{font-family:var(--fh);font-size:0.95rem;font-weight:700;color:var(--tw);margin-bottom:0.18rem}
+.tm-body span{font-size:0.72rem;color:var(--cyan);font-family:var(--fh);font-weight:700;letter-spacing:1px;display:block;margin-bottom:0.45rem}
+.tm-body p{font-size:0.78rem;color:var(--td);line-height:1.5}
+
+/* Partners */
+.part-row{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap}
+.part{font-family:var(--fh);font-size:0.82rem;font-weight:700;letter-spacing:2px;color:var(--td);padding:0.7rem 1.3rem;border:1px solid var(--cbr);transition:var(--tr)}
+.part:hover{color:var(--tw);border-color:rgba(255,255,255,0.18)}
+
+/* ============================================================
+   PAGE HERO (shared for Gal/Con/About)
+   ============================================================ */
+.ph{position:relative;height:52vh;min-height:380px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ph-ov{position:absolute;inset:0;background:rgba(5,7,12,0.75)}
+.ph-cnt{position:relative;z-index:1;text-align:center}
+.ph-tag{display:inline-block;font-family:var(--fh);font-size:0.72rem;font-weight:700;letter-spacing:5px;text-transform:uppercase;margin-bottom:0.9rem;padding:0.25rem 0.9rem}
+.ph-title{font-family:var(--fd);font-size:clamp(3rem,8vw,6rem);letter-spacing:5px;line-height:1}
+.ph-cnt p{font-size:0.95rem;color:var(--tm);margin-top:0.7rem}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{background:var(--d4);padding-top:4.5rem;border-top:1px solid rgba(255,107,26,0.18)}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:2.8rem;padding-bottom:2.8rem}
+.ft-brand p{font-size:0.83rem;color:var(--td);line-height:1.7;margin:0.9rem 0 1.3rem}
+.ft-soc{display:flex;gap:0.9rem;flex-wrap:wrap}
+.ft-soc a{font-family:var(--fh);font-size:0.72rem;font-weight:700;letter-spacing:1px;color:var(--td);padding:0.35rem 0.75rem;border:1px solid var(--cbr);transition:var(--tr)}
+.ft-soc a:hover{color:var(--orange);border-color:var(--orange)}
+.ft-col h4{font-family:var(--fh);font-size:0.82rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--tw);margin-bottom:1.3rem;padding-bottom:0.7rem;border-bottom:1px solid var(--cbr)}
+.ft-col{display:flex;flex-direction:column;gap:0.55rem}
+.ft-col a{font-size:0.83rem;color:var(--td);transition:var(--tr);cursor:pointer}
+.ft-col a:hover{color:var(--orange);padding-left:5px}
+.ft-col p{font-size:0.82rem;color:var(--td);line-height:1.5;margin-bottom:0.5rem}
+.ft-bot{border-top:1px solid var(--cbr);padding:1.3rem 2rem;text-align:center}
+.ft-bot p{font-size:0.78rem;color:var(--td);letter-spacing:1px}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:1024px){
+  .ab-flex,.st-flex,.vac-flex,.miss-flex,.con-flex{grid-template-columns:1fr}
+  .ab-imgs,.st-imgs{height:300px}
+  .wond-grid,.reas-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
+  .t-tags{grid-template-columns:repeat(2,1fr)}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  .testi.featured{transform:none}
+  .pd-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:auto}
+  .pd.tall,.pd.wide{grid-row:span 1;grid-column:span 1}
+  .faq-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .gal-grid{grid-template-columns:repeat(2,1fr)}
+  .gi.wide{grid-column:span 2}
+  .disc-cnt{grid-template-columns:1fr}
+  .d-routes{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  nav{padding:0.9rem 1.2rem}
+  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(8,10,16,0.98);padding:1.3rem;gap:0.9rem;border-bottom:1px solid var(--cbr)}
+  .nav-links.open{display:flex}
+  .burger{display:flex}
+  .nav-soc{display:none}
+  .hero-content{padding:7.5rem 1.5rem 2.5rem}
+  .hero-stats{flex-wrap:wrap;gap:1rem;padding:1.5rem}
+  .hero-btns{flex-direction:column}
+  .t-hero-cnt{padding:7.5rem 1.5rem 2rem}
+  .t-tags{grid-template-columns:1fr 1fr}
+  .t-slides{display:none}
+  .d-hero-cnt{padding:7.5rem 1.5rem 2rem}
+  .d-nums{display:none}
+  .d-routes{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr}
+  .f-row{grid-template-columns:1fr}
+  .gal-grid{grid-template-columns:repeat(2,1fr)}
+  .wond-grid{grid-template-columns:1fr 1fr}
+  .at-grid{grid-template-columns:1fr}
+  .dc-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .cta-btns{flex-direction:column;align-items:center}
+}
+@media(max-width:480px){
+  .hero-title{font-size:3rem}
+  .d-big{font-size:3.5rem}
+  .t-big{font-size:4rem}
+  .gal-grid{grid-template-columns:1fr}
+  .gi.tall,.gi.wide{grid-column:span 1;grid-row:span 1}
+  .team-grid{grid-template-columns:1fr}
+  .wond-grid,.reas-grid,.testi-grid{grid-template-columns:1fr}
+  .t-tags{grid-template-columns:1fr}
+  .pd-grid{grid-template-columns:1fr}
+  .part-row{gap:0.8rem}
+  .stats-row{gap:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+  <div class="logo" onclick="showPage('home')">
+    <span style="font-size:1.5rem">⛰</span>
+    <span>ALFA <span class="logo-acc">TOUR</span></span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a onclick="showPage('home')" class="active" id="nav-home">HOME</a></li>
+    <li><a onclick="showPage('tours')" id="nav-tours">TOURS</a></li>
+    <li><a onclick="showPage('destination')" id="nav-destination">DESTINATION</a></li>
+    <li><a onclick="showPage('gallery')" id="nav-gallery">GALLERY</a></li>
+    <li><a onclick="showPage('about')" id="nav-about">ABOUT</a></li>
+    <li><a onclick="showPage('contact')" id="nav-contact">CONTACT</a></li>
+  </ul>
+  <div class="nav-soc">
+    <a href="#">FB</a><a href="#">IG</a><a href="#">TW</a>
+  </div>
+  <div class="burger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ===================================================
+     PAGE: HOME
+     =================================================== -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-ov"></div>
+    <div class="particles" id="particles"></div>
+    <div class="hero-content">
+      <div class="hero-tag anim1">✦ EXPLORE THE WORLD</div>
+      <h1 class="hero-title anim2">TRAVEL WITH<br><span>ALFA TOUR</span></h1>
+      <p class="hero-sub anim3">Discover breathtaking adventures across the globe. From mountain peaks to ocean depths — your journey begins here.</p>
+      <div class="hero-btns anim4">
+        <button class="btn btn-o" onclick="showPage('tours')">EXPLORE TOURS</button>
+        <button class="btn btn-g" onclick="showPage('destination')">VIEW DESTINATIONS</button>
+      </div>
+    </div>
+    <div class="hero-stats anim5">
+      <div><span class="stat-n">500+</span><span class="stat-l">Adventures</span></div>
+      <div class="stat-div"></div>
+      <div><span class="stat-n">120+</span><span class="stat-l">Destinations</span></div>
+      <div class="stat-div"></div>
+      <div><span class="stat-n">50K+</span><span class="stat-l">Happy Travelers</span></div>
+    </div>
+    <div class="scroll-ind anim5">
+      <div class="scroll-line"></div>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="s-dark">
+    <div class="container">
+      <div class="s-header">
+        <div class="s-tag">WHY CHOOSE US</div>
+        <h2 class="s-title">DISCOVER <span class="acc-o">OUR</span> SERVICES</h2>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-card"><span class="feat-icon">🧭</span><h3>Expert Guides</h3><p>Our certified local guides bring decades of experience to every adventure you take with us.</p></div>
+        <div class="feat-card"><span class="feat-icon">🏕️</span><h3>Premium Camps</h3><p>Luxury camping equipment and setups that blend comfort with the raw beauty of nature.</p></div>
+        <div class="feat-card"><span class="feat-icon">🌍</span><h3>Global Network</h3><p>Access to exclusive destinations worldwide not available through ordinary travel agencies.</p></div>
+        <div class="feat-card"><span class="feat-icon">🔒</span><h3>Safe Travel</h3><p>Full safety protocols, insurance coverage and 24/7 emergency support throughout your trip.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Tours -->
+  <section class="s-darker">
+    <div class="container">
+      <div class="s-header">
+        <div class="s-tag">ADVENTURES AWAIT</div>
+        <h2 class="s-title">POPULAR <span class="acc-o">TOURS</span></h2>
+      </div>
+      <div class="h-tours">
+        <div class="h-tour" onclick="showPage('tours')">
+          <div class="h-tour-img" style="background:linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.75)),url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500')"></div>
+          <div class="h-tour-body"><span class="badge-o">TREKKING</span><h3>Himalayan Base Camp</h3><p>14 Days · Nepal · $2,400</p><span class="tour-link">EXPLORE →</span></div>
+        </div>
+        <div class="h-tour" onclick="showPage('tours')">
+          <div class="h-tour-img" style="background:linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.75)),url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500')"></div>
+          <div class="h-tour-body"><span class="badge-o">ALPINE</span><h3>Swiss Alps Traverse</h3><p>10 Days · Switzerland · $3,100</p><span class="tour-link">EXPLORE →</span></div>
+        </div>
+        <div class="h-tour" onclick="showPage('tours')">
+          <div class="h-tour-img" style="background:linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.75)),url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=500')"></div>
+          <div class="h-tour-body"><span class="badge-o">WILDERNESS</span><h3>Patagonia Expedition</h3><p>12 Days · Argentina · $2,800</p><span class="tour-link">EXPLORE →</span></div>
+        </div>
+        <div class="h-tour" onclick="showPage('tours')">
+          <div class="h-tour-img" style="background:linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.75)),url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=500')"></div>
+          <div class="h-tour-body"><span class="badge-o">SUMMIT</span><h3>Kilimanjaro Ascent</h3><p>9 Days · Tanzania · $2,200</p><span class="tour-link">EXPLORE →</span></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:2.5rem"><button class="btn btn-o" onclick="showPage('tours')">VIEW ALL TOURS</button></div>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section class="s-dark">
+    <div class="container ab-flex">
+      <div class="ab-imgs">
+        <div class="ab-img1" style="background:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600')"></div>
+        <div class="ab-img2" style="background:url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=400')"></div>
+      </div>
+      <div class="ab-text">
+        <div class="s-tag">ABOUT US</div>
+        <h2 class="s-title" style="margin:0.7rem 0 1rem">TAKE YOUR JOURNEY<br><span class="acc-o">TO THE NEXT LEVEL</span></h2>
+        <p>Since 2010, ALFA TOUR has been guiding adventurous travelers through the world's most spectacular landscapes. We believe travel should challenge, inspire, and transform you.</p>
+        <p>Our team of professional guides and travel specialists craft journeys that balance adventure with comfort, giving you the ultimate outdoor experience.</p>
+        <button class="btn btn-o" onclick="showPage('about')">LEARN MORE</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="s-darker">
+    <div class="container">
+      <div class="s-header">
+        <div class="s-tag">TRAVELER STORIES</div>
+        <h2 class="s-title">WHAT THEY <span class="acc-o">SAY</span></h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi"><div class="stars">★★★★★</div><p>"The Himalayan trek was life-changing. ALFA TOUR's guides were incredibly knowledgeable and kept us safe the entire journey."</p><div class="t-author"><div class="t-av">AK</div><div><strong>Amal Kumara</strong><small>Trekking Enthusiast</small></div></div></div>
+        <div class="testi featured"><div class="stars">★★★★★</div><p>"We've traveled with many companies, but none compare to ALFA TOUR. The attention to detail and genuine passion for adventure is unmatched."</p><div class="t-author"><div class="t-av">SP</div><div><strong>Sarah Perera</strong><small>Adventure Traveler</small></div></div></div>
+        <div class="testi"><div class="stars">★★★★★</div><p>"Patagonia was our dream trip. ALFA TOUR made it a reality beyond our expectations. Already planning our next adventure!"</p><div class="t-author"><div class="t-av">DN</div><div><strong>Dinesh Niroshan</strong><small>Mountain Explorer</small></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-sec">
+    <div class="cta-ov"></div>
+    <div class="cta-body">
+      <h2>READY FOR YOUR NEXT<br><span style="color:var(--orange)">ADVENTURE?</span></h2>
+      <p>Join thousands of travelers who have experienced the world with ALFA TOUR</p>
+      <div class="cta-btns">
+        <button class="btn btn-o" onclick="showPage('tours')">BOOK A TOUR</button>
+        <button class="btn btn-g" onclick="showPage('contact')">CONTACT US</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container ft-grid">
+      <div class="ft-brand">
+        <div class="logo" onclick="showPage('home')"><span style="font-size:1.4rem">⛰</span><span>ALFA <span class="logo-acc">TOUR</span></span></div>
+        <p>Your trusted partner for extraordinary outdoor adventures around the world.</p>
+        <div class="ft-soc"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">Twitter</a></div>
+      </div>
+      <div class="ft-col">
+        <h4>Quick Links</h4>
+        <a onclick="showPage('home')">Home</a><a onclick="showPage('tours')">Tours</a><a onclick="showPage('destination')">Destinations</a><a onclick="showPage('gallery')">Gallery</a><a onclick="showPage('about')">About</a><a onclick="showPage('contact')">Contact</a>
+      </div>
+      <div class="ft-col">
+        <h4>Popular Tours</h4>
+        <a onclick="showPage('tours')">Himalayan Trek</a><a onclick="showPage('tours')">Swiss Alps</a><a onclick="showPage('tours')">Patagonia</a><a onclick="showPage('tours')">Kilimanjaro</a><a onclick="showPage('tours')">Amazon Jungle</a>
+      </div>
+      <div class="ft-col">
+        <h4>Contact Info</h4>
+        <p>📍 123 Adventure St, Colombo, Sri Lanka</p>
+        <p>📞 +94 11 234 5678</p>
+        <p>✉️ info@alfatour.lk</p>
+        <p>🕐 Mon–Sat: 9AM – 6PM</p>
+      </div>
+    </div>
+    <div class="ft-bot"><p>© 2024 TRAVEL WITH ALFA TOUR. All Rights Reserved.</p></div>
+  </footer>
+</div>
+
+<!-- ===================================================
+     PAGE: TOURS
+     =================================================== -->
+<div class="page" id="page-tours">
+  <!-- Tours Hero -->
+  <section class="t-hero">
+    <div class="t-hero-bg"></div>
+    <div class="t-hero-ov"></div>
+    <div class="t-slides"><span class="on">01</span><span>02</span><span>03</span><span>04</span></div>
+    <div class="t-hero-cnt">
+      <h1 class="t-big anim1">ADVENTURE</h1>
+      <p class="t-sub anim2">Create Your Outdoor Adventure. Discover With Us.</p>
+    </div>
+    <div class="t-tags anim5">
+      <div class="t-tag-item"><span class="t-tag-icon">📍</span><span>Be yourself with new emotion</span></div>
+      <div class="t-tag-item"><span class="t-tag-icon">📍</span><span>Create Your Outdoor Adventure</span></div>
+      <div class="t-tag-item"><span class="t-tag-icon">📍</span><span>Discover With Us</span></div>
+      <div class="t-tag-item"><span class="t-tag-icon">📍</span><span>With new emotion like yourself</span></div>
+    </div>
+  </section>
+
+  <!-- Wonders -->
+  <section class="s-dark2" style="background:var(--d2);padding:5.5rem 0">
+    <div class="container">
+      <div class="wond-hd">
+        <div><h2 class="s-title2">The Wonders Of Nature</h2><p style="font-size:0.83rem;color:var(--td);margin-top:0.4rem">We seek to provide the authentic content for travellers around the world</p></div>
+        <button class="wond-next">›</button>
+      </div>
+      <div class="wond-grid">
+        <div class="wond"><div class="wond-img" style="background:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400')"></div><div class="wond-lbl"><span style="font-size:1.1rem">⛰</span><div><strong>Camel Hill</strong><small>Authentic content for travellers around the world</small></div></div></div>
+        <div class="wond"><div class="wond-img" style="background:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=400')"></div><div class="wond-lbl"><span style="font-size:1.1rem">🌿</span><div><strong>Forest Path</strong><small>Authentic content for travellers around the world</small></div></div></div>
+        <div class="wond"><div class="wond-img" style="background:url('https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=400')"></div><div class="wond-lbl"><span style="font-size:1.1rem">🐘</span><div><strong>Ghumti Forest</strong><small>Authentic content for travellers around the world</small></div></div></div>
+        <div class="wond"><div class="wond-img" style="background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400')"></div><div class="wond-lbl"><span style="font-size:1.1rem">🗻</span><div><strong>Red Mountain</strong><small>Authentic content for travellers around the world</small></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reasons -->
+  <section class="s-darker">
+    <div class="container">
+      <h2 class="s-title2" style="text-align:center;margin-bottom:0.5rem">Reason For Choosing Us</h2>
+      <div class="reas-grid">
+        <div class="reas on"><div class="reas-ico">🏆</div><h3>Tried and Trusted</h3><p>We're trusted worldwide by 20 million travellers just like you.</p></div>
+        <div class="reas"><div class="reas-ico">📞</div><h3>Reliable Support</h3><p>We're here for you. Reach out anytime by phone, email, or chat.</p></div>
+        <div class="reas"><div class="reas-ico">👥</div><h3>One-stop Travel Partner</h3><p>Your search ends here. We've got your entire trip covered!</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vacation -->
+  <section style="background:var(--d2);padding:5.5rem 0">
+    <div class="container vac-flex">
+      <div class="vac-imgs">
+        <div class="vi1" style="background:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400')"></div>
+        <div class="vi2" style="background:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400')"></div>
+        <div class="vi3" style="background:url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=400')"></div>
+      </div>
+      <div class="vac-txt">
+        <h2 class="s-title2">Here's what makes a vacation <span style="color:var(--lime)">perfect for you!</span></h2>
+        <p>Whether you're planning a family vacation, a relaxing weekend getaway, or an adventurous excursion, our tours are ideal for trips of all types. From mountain cabins to lakeside lodges — we have it all.</p>
+        <button class="btn btn-l" onclick="showPage('contact')">Book Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- All Tours -->
+  <section class="s-darker">
+    <div class="container">
+      <h2 class="s-title" style="text-align:center;margin-bottom:2.5rem">Explore <span class="acc-l">Nature</span> With Us</h2>
+      <div class="tf">
+        <button class="tf-btn on" onclick="filterTours('all',this)">All Tours</button>
+        <button class="tf-btn" onclick="filterTours('trek',this)">Trekking</button>
+        <button class="tf-btn" onclick="filterTours('alpine',this)">Alpine</button>
+        <button class="tf-btn" onclick="filterTours('jungle',this)">Jungle</button>
+        <button class="tf-btn" onclick="filterTours('coastal',this)">Coastal</button>
+      </div>
+      <div class="at-grid">
+        <div class="at" data-cat="trek"><div class="at-img" style="background:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500')"></div><div class="at-body"><span class="badge-l">TREKKING</span><h3>Himalayan Base Camp</h3><p>Experience the majestic Himalayas with our expert guides through stunning landscapes.</p><div class="at-meta"><span>14 Days</span><span>Nepal</span><span class="at-price">$2,400</span></div><button class="btn btn-l btn-sm" onclick="showPage('contact')">Book Now</button></div></div>
+        <div class="at" data-cat="alpine"><div class="at-img" style="background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500')"></div><div class="at-body"><span class="badge-l">ALPINE</span><h3>Swiss Alps Traverse</h3><p>Traverse the iconic Swiss Alps on a 10-day journey through valleys and passes.</p><div class="at-meta"><span>10 Days</span><span>Switzerland</span><span class="at-price">$3,100</span></div><button class="btn btn-l btn-sm" onclick="showPage('contact')">Book Now</button></div></div>
+        <div class="at" data-cat="trek"><div class="at-img" style="background:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=500')"></div><div class="at-body"><span class="badge-l">WILDERNESS</span><h3>Patagonia Expedition</h3><p>Explore the raw beauty of Patagonia's dramatic landscapes and glaciers.</p><div class="at-meta"><span>12 Days</span><span>Argentina</span><span class="at-price">$2,800</span></div><button class="btn btn-l btn-sm" onclick="showPage('contact')">Book Now</button></div></div>
+        <div class="at" data-cat="alpine"><div class="at-img" style="background:url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=500')"></div><div class="at-body"><span class="badge-l">SUMMIT</span><h3>Kilimanjaro Ascent</h3><p>Conquer Africa's highest peak with our certified mountain guides.</p><div class="at-meta"><span>9 Days</span><span>Tanzania</span><span class="at-price">$2,200</span></div><button class="btn btn-l btn-sm" onclick="showPage('contact')">Book Now</button></div></div>
+        <div class="at" data-cat="jungle"><div class="at-img" style="background:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=500')"></div><div class="at-body"><span class="badge-l">JUNGLE</span><h3>Amazon Jungle Trek</h3><p>Dive deep into the Amazon rainforest for a truly wild and unforgettable experience.</p><div class="at-meta"><span>8 Days</span><span>Brazil</span><span class="at-price">$1,900</span></div><button class="btn btn-l btn-sm" onclick="showPage('contact')">Book Now</button></div></div>
+        <div class="at" data-cat="coastal"><div class="at-img" style="background:url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=500')"></div><div class="at-body"><span class="badge-l">COASTAL</span><h3>Amalfi Coast Journey</h3><p>Wander along stunning cliffside villages and turquoise waters of Amalfi.</p><div class="at-meta"><span>7 Days</span><span>Italy</span><span class="at-price">$2,600</span></div><button class="btn btn-l btn-sm" onclick="showPage('contact')">Book Now</button></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container ft-grid">
+      <div class="ft-brand"><div class="logo" onclick="showPage('home')"><span style="font-size:1.4rem">⛰</span><span>ALFA <span class="logo-acc">TOUR</span></span></div><p>Your trusted partner for extraordinary outdoor adventures around the world.</p><div class="ft-soc"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">Twitter</a></div></div>
+      <div class="ft-col"><h4>Quick Links</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('tours')">Tours</a><a onclick="showPage('destination')">Destinations</a><a onclick="showPage('gallery')">Gallery</a><a onclick="showPage('about')">About</a><a onclick="showPage('contact')">Contact</a></div>
+      <div class="ft-col"><h4>Popular Tours</h4><a onclick="showPage('tours')">Himalayan Trek</a><a onclick="showPage('tours')">Swiss Alps</a><a onclick="showPage('tours')">Patagonia</a><a onclick="showPage('tours')">Kilimanjaro</a><a onclick="showPage('tours')">Amazon Jungle</a></div>
+      <div class="ft-col"><h4>Contact Info</h4><p>📍 123 Adventure St, Colombo, Sri Lanka</p><p>📞 +94 11 234 5678</p><p>✉️ info@alfatour.lk</p><p>🕐 Mon–Sat: 9AM – 6PM</p></div>
+    </div>
+    <div class="ft-bot"><p>© 2024 TRAVEL WITH ALFA TOUR. All Rights Reserved.</p></div>
+  </footer>
+</div>
+
+<!-- ===================================================
+     PAGE: DESTINATION
+     =================================================== -->
+<div class="page" id="page-destination">
+  <section class="d-hero">
+    <div class="d-hero-bg"></div>
+    <div class="d-hero-ov"></div>
+    <div class="d-nums"><span>01</span><span>02</span><span class="on">03</span><span>04</span><span>05</span></div>
+    <div class="d-hero-cnt">
+      <h1 class="d-big anim1">TIME TO<br>TRAVEL</h1>
+      <p class="anim2">The best time to visit the world's greatest destinations. Our expert guides bring you to places that take your breath away. Every journey is a new story waiting to be written.</p>
+    </div>
+    <div class="d-routes anim5">
+      <div class="d-route"><span class="d-route-ico">🏔</span><div><strong>Mountain Routes</strong><small>The Crown Jewel of Rocky Mountain NP. Longs Peak is one of the most coveted summits in the West.</small><a class="more-d" href="#">MORE DETAILED →</a></div></div>
+      <div class="d-route"><span class="d-route-ico">🥾</span><div><strong>Keyhole Trail</strong><small>The most popular route is The Keyhole, an exposed but non-technical passage that spirals around the mountain.</small><a class="more-d" href="#">MORE DETAILED →</a></div></div>
+      <div class="d-route"><span class="d-route-ico">🧗</span><div><strong>Technical Route</strong><small>This historic route involves a few technical pitches and offers the most direct line to the summit.</small><a class="more-d" href="#">MORE DETAILED →</a></div></div>
+    </div>
+  </section>
+
+  <!-- Popular Destinations -->
+  <section class="s-black">
+    <div class="container">
+      <div class="pd-hd">
+        <div><h2 class="s-title3">POPULAR DESTINATIONS</h2><p>Thousands of beautiful places waiting for you</p></div>
+      </div>
+      <div class="pd-grid">
+        <div class="pd tall"><div class="pd-img" style="background:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=500')"></div><div class="pd-ov"><span class="pd-tag">DESTINATION 1</span><h3>Amazon Rainforest</h3><p>Brazil's vast wilderness</p></div></div>
+        <div class="pd"><div class="pd-img" style="background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500')"></div><div class="pd-ov"><span class="pd-tag">DESTINATION 2</span><h3>Swiss Alps</h3><p>Europe's crown jewel</p></div></div>
+        <div class="pd"><div class="pd-img" style="background:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=500')"></div><div class="pd-ov"><span class="pd-tag">DESTINATION 3</span><h3>Iceland Highlands</h3><p>Land of fire and ice</p></div></div>
+        <div class="pd wide"><div class="pd-img" style="background:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=700')"></div><div class="pd-ov"><span class="pd-tag">DESTINATION 4</span><h3>Patagonia</h3><p>South America's end of the world</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Discover Section -->
+  <section class="disc-sec">
+    <div class="disc-bg"></div>
+    <div class="disc-cnt">
+      <div class="disc-txt">
+        <h2>DISCOVER THE<br>WORLD IN A<br>NEW WAY</h2>
+        <div class="watch-v"><div class="play-c">▶</div><span>WATCH THE VIDEO</span></div>
+        <blockquote class="disc-q">«Have you ever heard an avalanche roar in the mountains? Just after the avalanche roars, there is absolute silence. You stop understanding where you are – that's 100%. Just very quiet»<cite>© Haruki Murakami</cite></blockquote>
+      </div>
+      <div class="disc-vids">
+        <div class="vt" style="background:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500')"><div class="play-btn">▶</div></div>
+        <div class="vt" style="background:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400')"><div class="play-btn">▶</div></div>
+        <div class="vt" style="background:url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=400')"><div class="play-btn">▶</div></div>
+        <div class="vt" style="background:url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=400')"><div class="play-btn">▶</div></div>
+        <div class="vt" style="background:url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=400')"><div class="play-btn">▶</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destination Cards -->
+  <section class="s-black">
+    <div class="container">
+      <h2 class="s-title3" style="text-align:center;margin-bottom:2rem">ALL DESTINATIONS</h2>
+      <div class="cont-tabs">
+        <button class="ct on" onclick="activateTab(this)">All</button>
+        <button class="ct" onclick="activateTab(this)">Asia</button>
+        <button class="ct" onclick="activateTab(this)">Europe</button>
+        <button class="ct" onclick="activateTab(this)">Americas</button>
+        <button class="ct" onclick="activateTab(this)">Africa</button>
+      </div>
+      <div class="dc-grid">
+        <div class="dc"><div class="dc-img" style="background:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400')"></div><div class="dc-body"><span class="dc-country">🇳🇵 Nepal</span><h3>Everest Region</h3><p>The Everest Base Camp trek is one of the most iconic journeys in the world.</p><div class="dc-foot"><span>From $1,800</span><span class="dc-btn" onclick="showPage('tours')">Explore</span></div></div></div>
+        <div class="dc"><div class="dc-img" style="background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400')"></div><div class="dc-body"><span class="dc-country">🇨🇭 Switzerland</span><h3>Swiss Alps</h3><p>Majestic peaks, pristine lakes, and charming alpine villages await you.</p><div class="dc-foot"><span>From $2,400</span><span class="dc-btn" onclick="showPage('tours')">Explore</span></div></div></div>
+        <div class="dc"><div class="dc-img" style="background:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400')"></div><div class="dc-body"><span class="dc-country">🇦🇷 Argentina</span><h3>Patagonia</h3><p>The end of the world offers nature's most dramatic landscapes.</p><div class="dc-foot"><span>From $2,100</span><span class="dc-btn" onclick="showPage('tours')">Explore</span></div></div></div>
+        <div class="dc"><div class="dc-img" style="background:url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=400')"></div><div class="dc-body"><span class="dc-country">🇹🇿 Tanzania</span><h3>Kilimanjaro</h3><p>Stand atop Africa's highest peak and look out over the continent below.</p><div class="dc-foot"><span>From $1,600</span><span class="dc-btn" onclick="showPage('tours')">Explore</span></div></div></div>
+        <div class="dc"><div class="dc-img" style="background:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400')"></div><div class="dc-body"><span class="dc-country">🇮🇸 Iceland</span><h3>Ring Road</h3><p>Drive through Iceland's spectacular scenery including waterfalls and geysers.</p><div class="dc-foot"><span>From $2,900</span><span class="dc-btn" onclick="showPage('tours')">Explore</span></div></div></div>
+        <div class="dc"><div class="dc-img" style="background:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=400')"></div><div class="dc-body"><span class="dc-country">🇧🇷 Brazil</span><h3>Amazon Jungle</h3><p>Explore the world's largest rainforest and its incredible biodiversity.</p><div class="dc-foot"><span>From $1,500</span><span class="dc-btn" onclick="showPage('tours')">Explore</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container ft-grid">
+      <div class="ft-brand"><div class="logo" onclick="showPage('home')"><span style="font-size:1.4rem">⛰</span><span>ALFA <span class="logo-acc">TOUR</span></span></div><p>Your trusted partner for extraordinary outdoor adventures around the world.</p><div class="ft-soc"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">Twitter</a></div></div>
+      <div class="ft-col"><h4>Quick Links</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('tours')">Tours</a><a onclick="showPage('destination')">Destinations</a><a onclick="showPage('gallery')">Gallery</a><a onclick="showPage('about')">About</a><a onclick="showPage('contact')">Contact</a></div>
+      <div class="ft-col"><h4>Popular Tours</h4><a onclick="showPage('tours')">Himalayan Trek</a><a onclick="showPage('tours')">Swiss Alps</a><a onclick="showPage('tours')">Patagonia</a><a onclick="showPage('tours')">Kilimanjaro</a><a onclick="showPage('tours')">Amazon Jungle</a></div>
+      <div class="ft-col"><h4>Contact Info</h4><p>📍 123 Adventure St, Colombo, Sri Lanka</p><p>📞 +94 11 234 5678</p><p>✉️ info@alfatour.lk</p><p>🕐 Mon–Sat: 9AM – 6PM</p></div>
+    </div>
+    <div class="ft-bot"><p>© 2024 TRAVEL WITH ALFA TOUR. All Rights Reserved.</p></div>
+  </footer>
+</div>
+
+<!-- ===================================================
+     PAGE: GALLERY
+     =================================================== -->
+<div class="page" id="page-gallery">
+  <section class="ph" style="background:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1600') center/cover no-repeat">
+    <div class="ph-ov"></div>
+    <div class="ph-cnt anim1">
+      <div class="ph-tag" style="color:var(--lime);border:1px solid var(--lime-g)">OUR MEMORIES</div>
+      <h1 class="ph-title">ADVENTURE <span style="color:var(--lime)">GALLERY</span></h1>
+      <p>Moments captured from our incredible journeys around the world</p>
+    </div>
+  </section>
+
+  <section class="s-dark">
+    <div class="container">
+      <div class="gal-filters">
+        <button class="gf on" onclick="filterGal('all',this)">All</button>
+        <button class="gf" onclick="filterGal('mountains',this)">Mountains</button>
+        <button class="gf" onclick="filterGal('forest',this)">Forests</button>
+        <button class="gf" onclick="filterGal('water',this)">Water</button>
+        <button class="gf" onclick="filterGal('people',this)">People</button>
+      </div>
+      <div class="gal-grid">
+        <div class="gi" data-cat="mountains" data-cap="Himalayan Summit" onclick="openLB(this)"><div class="gi-img" style="background:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600')"></div><div class="gi-cap">Himalayan Summit</div><div class="gi-zoom">🔍</div></div>
+        <div class="gi tall" data-cat="forest" data-cap="Ancient Forest Path" onclick="openLB(this)"><div class="gi-img" style="background:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=600')"></div><div class="gi-cap">Ancient Forest Path</div><div class="gi-zoom">🔍</div></div>
+        <div class="gi" data-cat="mountains" data-cap="Swiss Alps Sunrise" onclick="openLB(this)"><div class="gi-img" style="background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600')"></div><div class="gi-cap">Swiss Alps Sunrise</div><div class="gi-zoom">🔍</div></div>
+        <div class="gi wide" data-cat="water" data-cap="Mountain Lake Reflection" onclick="openLB(this)"><div class="gi-img" style="background:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800')"></div><div class="gi-cap">Mountain Lake Reflection</div><div class="gi-zoom">🔍</div></div>
+        <div class="gi" data-cat="mountains" data-cap="Patagonian Night Sky" onclick="openLB(this)"><div class="gi-img" style="background:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600')"></div><div class="gi-cap">Patagonian Night Sky</div><div class="gi-zoom">🔍</div></div>
+        <div class="gi" data-cat="people" data-cap="Summit Achievement" onclick="openLB(this)"><div class="gi-img" style="background:url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=600')"></div><div class="gi-cap">Summit Achievement</div><div class="gi-zoom">🔍</div></div>
+        <div class="gi tall" data-cat="mountains" data-cap="Kilimanjaro Peak" onclick="openLB(this)"><div class="gi-img" style="background:url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=600')"></div><div class="gi-cap">Kilimanjaro Peak</div><div class="gi-zoom">🔍</div></div>
+        <div class="gi" data-cat="water" data-cap="Coastal Discovery" onclick="openLB(this)"><div class="gi-img" style="background:url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=600')"></div><div class="gi-cap">Coastal Discovery</div><div class="gi-zoom">🔍</div></div>
+        <div class="gi" data-cat="forest" data-cap="Valley of Light" onclick="openLB(this)"><div class="gi-img" style="background:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600')"></div><div class="gi-cap">Valley of Light</div><div class="gi-zoom">🔍</div></div>
+        <div class="gi wide" data-cat="mountains" data-cap="Rocky Mountain Dawn" onclick="openLB(this)"><div class="gi-img" style="background:url('https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?w=800')"></div><div class="gi-cap">Rocky Mountain Dawn</div><div class="gi-zoom">🔍</div></div>
+        <div class="gi" data-cat="people" data-cap="Trekking Together" onclick="openLB(this)"><div class="gi-img" style="background:url('https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=600')"></div><div class="gi-cap">Trekking Together</div><div class="gi-zoom">🔍</div></div>
+        <div class="gi" data-cat="water" data-cap="Waterfall Wonder" onclick="openLB(this)"><div class="gi-img" style="background:url('https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600')"></div><div class="gi-cap">Waterfall Wonder</div><div class="gi-zoom">🔍</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container ft-grid">
+      <div class="ft-brand"><div class="logo" onclick="showPage('home')"><span style="font-size:1.4rem">⛰</span><span>ALFA <span class="logo-acc">TOUR</span></span></div><p>Your trusted partner for extraordinary outdoor adventures around the world.</p><div class="ft-soc"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">Twitter</a></div></div>
+      <div class="ft-col"><h4>Quick Links</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('tours')">Tours</a><a onclick="showPage('destination')">Destinations</a><a onclick="showPage('gallery')">Gallery</a><a onclick="showPage('about')">About</a><a onclick="showPage('contact')">Contact</a></div>
+      <div class="ft-col"><h4>Popular Tours</h4><a onclick="showPage('tours')">Himalayan Trek</a><a onclick="showPage('tours')">Swiss Alps</a><a onclick="showPage('tours')">Patagonia</a><a onclick="showPage('tours')">Kilimanjaro</a><a onclick="showPage('tours')">Amazon Jungle</a></div>
+      <div class="ft-col"><h4>Contact Info</h4><p>📍 123 Adventure St, Colombo, Sri Lanka</p><p>📞 +94 11 234 5678</p><p>✉️ info@alfatour.lk</p><p>🕐 Mon–Sat: 9AM – 6PM</p></div>
+    </div>
+    <div class="ft-bot"><p>© 2024 TRAVEL WITH ALFA TOUR. All Rights Reserved.</p></div>
+  </footer>
+</div>
+
+<!-- ===================================================
+     PAGE: CONTACT
+     =================================================== -->
+<div class="page" id="page-contact">
+  <section class="ph" style="background:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1600') center/cover no-repeat">
+    <div class="ph-ov"></div>
+    <div class="ph-cnt anim1">
+      <div class="ph-tag" style="color:var(--orange);border:1px solid var(--orange-g)">GET IN TOUCH</div>
+      <h1 class="ph-title">CONTACT <span style="color:var(--orange)">US</span></h1>
+      <p>We're ready to help you plan your next adventure</p>
+    </div>
+  </section>
+
+  <section class="s-dark">
+    <div class="container">
+      <div class="con-flex">
+        <!-- Info -->
+        <div class="con-info">
+          <h2 class="s-title" style="margin-bottom:1rem">Let's Start<br><span class="acc-o">Your Journey</span></h2>
+          <p>Have a question or ready to book? Our team is here to help you every step of the way.</p>
+          <div class="con-details">
+            <div class="ci"><div class="ci-ico">📍</div><div><strong>Our Office</strong><p>123 Adventure Street, Colombo 03, Sri Lanka</p></div></div>
+            <div class="ci"><div class="ci-ico">📞</div><div><strong>Phone</strong><p>+94 11 234 5678<br>+94 77 123 4567</p></div></div>
+            <div class="ci"><div class="ci-ico">✉️</div><div><strong>Email</strong><p>info@alfatour.lk<br>bookings@alfatour.lk</p></div></div>
+            <div class="ci"><div class="ci-ico">🕐</div><div><strong>Working Hours</strong><p>Monday – Saturday: 9AM – 6PM<br>Sunday: Closed</p></div></div>
+          </div>
+          <div class="con-social">
+            <h4>Follow Us</h4>
+            <div class="soc-links">
+              <a class="sl" href="#">📘 Facebook</a>
+              <a class="sl" href="#">📸 Instagram</a>
+              <a class="sl" href="#">🐦 Twitter</a>
+              <a class="sl" href="#">▶️ YouTube</a>
+            </div>
+          </div>
+        </div>
+        <!-- Form -->
+        <div class="form-wrap">
+          <h3>Send Us a Message</h3>
+          <div class="success-msg" id="successMsg">
+            <span>✅</span>
+            <p>Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.</p>
+          </div>
+          <div class="f-row">
+            <div class="fg"><label>First Name *</label><input type="text" id="fName" placeholder="Your first name"></div>
+            <div class="fg"><label>Last Name *</label><input type="text" id="lName" placeholder="Your last name"></div>
+          </div>
+          <div class="fg"><label>Email Address *</label><input type="email" id="fEmail" placeholder="your@email.com"></div>
+          <div class="fg"><label>Phone Number</label><input type="tel" id="fPhone" placeholder="+94 XX XXX XXXX"></div>
+          <div class="fg"><label>Tour of Interest</label>
+            <select id="fTour">
+              <option value="">Select a tour...</option>
+              <option>Himalayan Base Camp</option>
+              <option>Swiss Alps Traverse</option>
+              <option>Patagonia Expedition</option>
+              <option>Kilimanjaro Ascent</option>
+              <option>Amazon Jungle Trek</option>
+              <option>Amalfi Coast Journey</option>
+              <option>Custom Tour</option>
+            </select>
+          </div>
+          <div class="fg"><label>Number of Travelers</label>
+            <select id="fTravelers">
+              <option>1 Person</option><option>2 People</option><option>3–5 People</option><option>6–10 People</option><option>10+ People</option>
+            </select>
+          </div>
+          <div class="fg"><label>Your Message *</label><textarea id="fMsg" rows="5" placeholder="Tell us about your dream adventure, preferred dates, special requirements..."></textarea></div>
+          <button class="btn-sub" onclick="submitForm()"><span id="subTxt">SEND MESSAGE</span><span id="subLoad" style="display:none">SENDING...</span></button>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <h3 style="text-align:center;color:#fff;letter-spacing:3px;font-family:var(--fh);margin-bottom:1.5rem;text-transform:uppercase">Find Us On The Map</h3>
+      <div class="map-box">
+        <div class="pin">📍</div>
+        <p>ALFA TOUR Office<br>123 Adventure Street, Colombo, Sri Lanka</p>
+        <a href="https://maps.google.com" target="_blank" class="btn btn-o btn-sm" style="clip-path:none;border-radius:3px;margin-top:0.5rem">Open in Google Maps</a>
+      </div>
+
+      <!-- FAQ -->
+      <div class="s-header" style="margin-top:4rem">
+        <div class="s-tag">QUICK ANSWERS</div>
+        <h2 class="s-title">FREQUENTLY ASKED <span class="acc-o">QUESTIONS</span></h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq" onclick="toggleFAQ(this)"><div class="faq-q">How far in advance should I book? <span class="faq-arr">+</span></div><div class="faq-a">We recommend booking 3–6 months in advance for peak season tours. Some popular treks can fill up 8–12 months ahead.</div></div>
+        <div class="faq" onclick="toggleFAQ(this)"><div class="faq-q">What fitness level is required? <span class="faq-arr">+</span></div><div class="faq-a">It varies by tour. We have options for all fitness levels from leisurely scenic tours to demanding high-altitude treks.</div></div>
+        <div class="faq" onclick="toggleFAQ(this)"><div class="faq-q">Is travel insurance included? <span class="faq-arr">+</span></div><div class="faq-a">Basic travel insurance is included in all our packages. We recommend upgrading to comprehensive coverage for adventure tours.</div></div>
+        <div class="faq" onclick="toggleFAQ(this)"><div class="faq-q">What happens if a tour is cancelled? <span class="faq-arr">+</span></div><div class="faq-a">If we cancel due to safety or unforeseen circumstances, you'll receive a full refund or option to reschedule at no cost.</div></div>
+        <div class="faq" onclick="toggleFAQ(this)"><div class="faq-q">Can I customize my tour? <span class="faq-arr">+</span></div><div class="faq-a">Absolutely! We offer fully customized tours. Contact us to discuss your specific requirements and we'll craft the perfect itinerary.</div></div>
+        <div class="faq" onclick="toggleFAQ(this)"><div class="faq-q">What's included in the price? <span class="faq-arr">+</span></div><div class="faq-a">All tours include accommodation, meals, guide services, and in-destination transport. International flights not included unless specified.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container ft-grid">
+      <div class="ft-brand"><div class="logo" onclick="showPage('home')"><span style="font-size:1.4rem">⛰</span><span>ALFA <span class="logo-acc">TOUR</span></span></div><p>Your trusted partner for extraordinary outdoor adventures around the world.</p><div class="ft-soc"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">Twitter</a></div></div>
+      <div class="ft-col"><h4>Quick Links</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('tours')">Tours</a><a onclick="showPage('destination')">Destinations</a><a onclick="showPage('gallery')">Gallery</a><a onclick="showPage('about')">About</a><a onclick="showPage('contact')">Contact</a></div>
+      <div class="ft-col"><h4>Popular Tours</h4><a onclick="showPage('tours')">Himalayan Trek</a><a onclick="showPage('tours')">Swiss Alps</a><a onclick="showPage('tours')">Patagonia</a><a onclick="showPage('tours')">Kilimanjaro</a><a onclick="showPage('tours')">Amazon Jungle</a></div>
+      <div class="ft-col"><h4>Contact Info</h4><p>📍 123 Adventure St, Colombo, Sri Lanka</p><p>📞 +94 11 234 5678</p><p>✉️ info@alfatour.lk</p><p>🕐 Mon–Sat: 9AM – 6PM</p></div>
+    </div>
+    <div class="ft-bot"><p>© 2024 TRAVEL WITH ALFA TOUR. All Rights Reserved.</p></div>
+  </footer>
+</div>
+
+<!-- ===================================================
+     PAGE: ABOUT
+     =================================================== -->
+<div class="page" id="page-about">
+  <section class="ph" style="background:url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=1600') center/cover no-repeat">
+    <div class="ph-ov"></div>
+    <div class="ph-cnt anim1">
+      <div class="ph-tag" style="color:var(--cyan);border:1px solid var(--cyan-g)">OUR STORY</div>
+      <h1 class="ph-title">ABOUT <span style="color:var(--cyan)">ALFA TOUR</span></h1>
+      <p>Born from a passion for adventure, built on a foundation of trust</p>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="s-dark">
+    <div class="container st-flex">
+      <div class="st-txt">
+        <div class="s-tag">WHO WE ARE</div>
+        <h2 class="s-title" style="margin:0.7rem 0 1rem">MORE THAN A<br><span class="acc-o">TRAVEL COMPANY</span></h2>
+        <p>Founded in 2010, ALFA TOUR began as a small group of passionate adventurers from Sri Lanka who believed that travel should be transformative. What started as weekend treks into the highlands has grown into one of the region's most respected adventure travel companies.</p>
+        <p>Today, we operate tours across 40+ countries on 6 continents, guiding thousands of travelers each year through the world's most spectacular landscapes. But our core mission remains unchanged: to create authentic, life-changing adventures that connect people with the natural world.</p>
+        <p>We believe that when you step outside your comfort zone — whether it's reaching a mountain summit or navigating jungle trails — you discover something profound about yourself.</p>
+        <div class="st-vals">
+          <div class="sv">🌍 Responsible Tourism</div>
+          <div class="sv">🤝 Local Partnerships</div>
+          <div class="sv">♻️ Eco-Friendly</div>
+        </div>
+      </div>
+      <div class="st-imgs">
+        <div class="si1" style="background:url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=500')"></div>
+        <div class="si2" style="background:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400')"></div>
+        <div class="si-stat"><div class="si-n">14</div><div class="si-l">Years of Excellence</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Strip -->
+  <div class="stats-strip">
+    <div class="container stats-row">
+      <div class="sb"><div class="sb-n">500+</div><div class="sb-l">Tours Completed</div></div>
+      <div class="sb"><div class="sb-n">40+</div><div class="sb-l">Countries</div></div>
+      <div class="sb"><div class="sb-n">50K+</div><div class="sb-l">Happy Travelers</div></div>
+      <div class="sb"><div class="sb-n">80+</div><div class="sb-l">Expert Guides</div></div>
+      <div class="sb"><div class="sb-n">4.9★</div><div class="sb-l">Average Rating</div></div>
+    </div>
+  </div>
+
+  <!-- Mission -->
+  <section class="s-darker">
+    <div class="container">
+      <div class="miss-flex">
+        <div class="miss-img" style="background:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=700')"></div>
+        <div class="miss-cards">
+          <div class="mc"><h3>🎯 Our Mission</h3><p>To inspire and enable people of all backgrounds to experience the world's greatest outdoor adventures, while promoting responsible and sustainable tourism.</p></div>
+          <div class="mc"><h3>👁️ Our Vision</h3><p>A world where authentic outdoor experiences bring people closer to nature and to each other, fostering a deeper understanding and respect for our planet.</p></div>
+          <div class="mc"><h3>💛 Our Values</h3><p>Safety first. Authenticity always. Respect for local cultures and environments. Transparency in everything we do. Adventure that transforms lives.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="s-dark">
+    <div class="container">
+      <div class="s-header">
+        <div class="s-tag">THE PEOPLE BEHIND IT</div>
+        <h2 class="s-title">MEET OUR <span class="acc-o">TEAM</span></h2>
+      </div>
+      <div class="team-grid">
+        <div class="tm"><div class="tm-img" style="background:url('https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300')"></div><div class="tm-body"><h3>Raj Fernando</h3><span>Founder & CEO</span><p>15+ years guiding adventures across Asia and the Americas.</p></div></div>
+        <div class="tm"><div class="tm-img" style="background:url('https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300')"></div><div class="tm-body"><h3>Priya Silva</h3><span>Head of Operations</span><p>Expert in logistics and creating seamless travel experiences.</p></div></div>
+        <div class="tm"><div class="tm-img" style="background:url('https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=300')"></div><div class="tm-body"><h3>Nimal Perera</h3><span>Lead Mountain Guide</span><p>Himalayan specialist with 200+ successful summit expeditions.</p></div></div>
+        <div class="tm"><div class="tm-img" style="background:url('https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=300')"></div><div class="tm-body"><h3>Amali Jayawardena</h3><span>Customer Experience</span><p>Dedicated to making every traveler's journey unforgettable.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section class="s-darker">
+    <div class="container">
+      <h3 style="text-align:center;color:var(--td);font-family:var(--fh);text-transform:uppercase;letter-spacing:3px;margin-bottom:2rem;font-size:0.85rem">Our Trusted Partners</h3>
+      <div class="part-row">
+        <div class="part">🏔 ALPINE GEAR</div>
+        <div class="part">✈️ SKY ROUTES</div>
+        <div class="part">🌿 ECO CAMPS</div>
+        <div class="part">🏨 SUMMIT LODGES</div>
+        <div class="part">🎒 TREK PRO</div>
+        <div class="part">🌐 WORLD GUIDES</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-sec">
+    <div class="cta-ov"></div>
+    <div class="cta-body">
+      <h2>JOIN THE ALFA TOUR<br><span style="color:var(--orange)">ADVENTURE FAMILY</span></h2>
+      <p>Start your journey with people who are as passionate about adventure as you are</p>
+      <div class="cta-btns">
+        <button class="btn btn-o" onclick="showPage('tours')">BROWSE TOURS</button>
+        <button class="btn btn-g" onclick="showPage('contact')">GET IN TOUCH</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container ft-grid">
+      <div class="ft-brand"><div class="logo" onclick="showPage('home')"><span style="font-size:1.4rem">⛰</span><span>ALFA <span class="logo-acc">TOUR</span></span></div><p>Your trusted partner for extraordinary outdoor adventures around the world.</p><div class="ft-soc"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">Twitter</a></div></div>
+      <div class="ft-col"><h4>Quick Links</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('tours')">Tours</a><a onclick="showPage('destination')">Destinations</a><a onclick="showPage('gallery')">Gallery</a><a onclick="showPage('about')">About</a><a onclick="showPage('contact')">Contact</a></div>
+      <div class="ft-col"><h4>Popular Tours</h4><a onclick="showPage('tours')">Himalayan Trek</a><a onclick="showPage('tours')">Swiss Alps</a><a onclick="showPage('tours')">Patagonia</a><a onclick="showPage('tours')">Kilimanjaro</a><a onclick="showPage('tours')">Amazon Jungle</a></div>
+      <div class="ft-col"><h4>Contact Info</h4><p>📍 123 Adventure St, Colombo, Sri Lanka</p><p>📞 +94 11 234 5678</p><p>✉️ info@alfatour.lk</p><p>🕐 Mon–Sat: 9AM – 6PM</p></div>
+    </div>
+    <div class="ft-bot"><p>© 2024 TRAVEL WITH ALFA TOUR. All Rights Reserved.</p></div>
+  </footer>
+</div>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lb" id="lightbox" onclick="closeLB(event)">
+  <div class="lb-img" id="lbImg"></div>
+  <div class="lb-cap" id="lbCap"></div>
+  <button class="lb-x" onclick="closeLB()">✕</button>
+</div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// PAGE ROUTING
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.remove('active');
+    if (a.id === 'nav-' + id) a.classList.add('active');
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.querySelector('.nav-links').classList.remove('open');
+}
+
+// NAVBAR SCROLL
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// HAMBURGER
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// PARTICLES
+(function(){
+  const c = document.getElementById('particles');
+  if (!c) return;
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `left:${Math.random()*100}%;width:${Math.random()*3+1}px;height:${Math.random()*3+1}px;animation-duration:${Math.random()*14+9}s;animation-delay:${Math.random()*8}s`;
+    c.appendChild(p);
+  }
+})();
+
+// SCROLL ANIMATIONS
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+function initAnimations() {
+  const els = document.querySelectorAll('.feat-card,.h-tour,.testi,.wond,.reas,.at,.dc,.gi,.tm,.mc,.pd,.sb');
+  els.forEach((el, i) => {
+    if (!el.classList.contains('io-init')) {
+      el.classList.add('io-init');
+      el.style.cssText += `opacity:0;transform:translateY(28px);transition:opacity 0.5s ease ${i*0.06}s,transform 0.5s ease ${i*0.06}s`;
+      io.observe(el);
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initAnimations();
+  // Re-init when page changes (mutation observer)
+  const mo = new MutationObserver(initAnimations);
+  mo.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
+});
+
+// Visible class via stylesheet
+const ss = document.createElement('style');
+ss.textContent = '.vis{opacity:1!important;transform:translateY(0)!important}';
+document.head.appendChild(ss);
+
+// GALLERY FILTER
+function filterGal(cat, btn) {
+  document.querySelectorAll('.gf').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.gi').forEach(el => {
+    el.classList.toggle('hide', cat !== 'all' && el.dataset.cat !== cat);
+  });
+}
+
+// LIGHTBOX
+function openLB(el) {
+  const img = el.querySelector('.gi-img');
+  const bg = window.getComputedStyle(img).backgroundImage;
+  document.getElementById('lbImg').style.background = bg + ' center/contain no-repeat';
+  document.getElementById('lbCap').textContent = el.dataset.cap || '';
+  document.getElementById('lightbox').classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function closeLB(e) {
+  if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lb-x')) {
+    document.getElementById('lightbox').classList.remove('on');
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB({}); });
+
+// TOURS FILTER
+function filterTours(cat, btn) {
+  document.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.at').forEach(el => {
+    el.classList.toggle('hide', cat !== 'all' && el.dataset.cat !== cat);
+  });
+}
+
+// CONTINENT TABS
+function activateTab(btn) {
+  document.querySelectorAll('.ct').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+}
+
+// CONTACT FORM
+function submitForm() {
+  const fn = document.getElementById('fName').value.trim();
+  const ln = document.getElementById('lName').value.trim();
+  const em = document.getElementById('fEmail').value.trim();
+  const ms = document.getElementById('fMsg').value.trim();
+  if (!fn) { alert('Please enter your first name.'); return; }
+  if (!ln) { alert('Please enter your last name.'); return; }
+  if (!em || !em.includes('@')) { alert('Please enter a valid email.'); return; }
+  if (!ms) { alert('Please enter your message.'); return; }
+  document.getElementById('subTxt').style.display = 'none';
+  document.getElementById('subLoad').style.display = 'inline';
+  setTimeout(() => {
+    ['fName','lName','fEmail','fPhone','fMsg'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('fTour').selectedIndex = 0;
+    document.getElementById('successMsg').classList.add('show');
+    document.getElementById('subTxt').style.display = 'inline';
+    document.getElementById('subLoad').style.display = 'none';
+    document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 1500);
+}
+
+// FAQ TOGGLE
+function toggleFAQ(el) {
+  document.querySelectorAll('.faq').forEach(f => { if (f !== el) f.classList.remove('on'); });
+  el.classList.toggle('on');
+}
+
+// PAGE LOAD FADE
+document.body.style.cssText += 'opacity:0;transition:opacity 0.4s ease';
+window.addEventListener('load', () => { document.body.style.opacity = '1'; });
+</script>
+</body>
+</html>
